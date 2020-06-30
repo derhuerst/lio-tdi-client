@@ -5,6 +5,7 @@
 	"main": "index.js",
 	"files": [
 		"index.js",
+		"pbf",
 		"example.js"
 	],
 	"keywords": [
@@ -24,13 +25,18 @@
 		"node": ">=12"
 	},
 	"dependencies": {
+		"content-type": "^1.0.4",
+		"fetch-ponyfill": "^6.1.1",
+		"protocol-buffers-encodings": "^1.1.0"
 	},
 	"devDependencies": {
 		"eslint": "^7.3.0",
+		"protocol-buffers": "^4.2.0",
 		"tap-min": "^2.0.0",
 		"tape": "^5.0.0"
 	},
 	"scripts": {
+		"build": "./build.sh",
 		"test": "env NODE_ENV=dev node test.js | tap-min",
 		"lint": "eslint .",
 		"prepublishOnly": "npm test && npm run lint"
