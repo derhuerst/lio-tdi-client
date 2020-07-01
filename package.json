@@ -6,6 +6,7 @@
 	"files": [
 		"index.js",
 		"pbf",
+		"lib",
 		"example.js"
 	],
 	"keywords": [
@@ -26,12 +27,11 @@
 	},
 	"dependencies": {
 		"content-type": "^1.0.4",
-		"fetch-ponyfill": "^6.1.1",
-		"protocol-buffers-encodings": "^1.1.0"
+		"fetch-ponyfill": "^6.1.1"
 	},
 	"devDependencies": {
 		"eslint": "^7.3.0",
-		"protocol-buffers": "^4.2.0",
+		"pbf": "^3.2.1",
 		"tap-min": "^2.0.0",
 		"tape": "^5.0.0"
 	},
