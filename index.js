@@ -17,26 +17,26 @@ const createClient = (baseUrl) => {
 			return res.base_version === 0 ? null : res.base_version
 		},
 
-		stops: async () => {
-			return await request(baseUrl + 'StopTDI')
+		stops: async (opt = {}) => {
+			return await request(baseUrl + 'StopTDI', !!opt.asBuffer)
 		},
-		stopPoints: async () => {
-			return await request(baseUrl + 'StopPointTDI')
+		stopPoints: async (opt = {}) => {
+			return await request(baseUrl + 'StopPointTDI', !!opt.asBuffer)
 		},
-		routes: async () => {
-			return await request(baseUrl + 'RouteTDI')
+		routes: async (opt = {}) => {
+			return await request(baseUrl + 'RouteTDI', !!opt.asBuffer)
 		},
-		patterns: async () => {
-			return await request(baseUrl + 'PatternTDI')
+		patterns: async (opt = {}) => {
+			return await request(baseUrl + 'PatternTDI', !!opt.asBuffer)
 		},
-		stopPassages: async () => {
-			return await request(baseUrl + 'StopPassageTDI')
+		stopPassages: async (opt = {}) => {
+			return await request(baseUrl + 'StopPassageTDI', !!opt.asBuffer)
 		},
-		vehicles: async () => {
-			return await request(baseUrl + 'VehicleTDI')
+		vehicles: async (opt = {}) => {
+			return await request(baseUrl + 'VehicleTDI', !!opt.asBuffer)
 		},
-		passengerAlerts: async () => {
-			return await request(baseUrl + 'PassengerAlertTDI')
+		passengerAlerts: async (opt = {}) => {
+			return await request(baseUrl + 'PassengerAlertTDI', !!opt.asBuffer)
 		},
 	}
 }
