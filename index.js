@@ -1,20 +1,21 @@
 'use strict'
 
-const Pbf = require('pbf')
 const request = require('./lib/request')
 
-const {VersionTdiArray} = require('./pbf/VersionTdiArray')
+const {
+	VersionTdiArray,
+} = require('./pbf').mhcc.app.dataprovider.model.tdiinterface.dstructs
 
 const createClient = (baseUrl) => {
 	return {
 		version: async () => {
 			const buf = await request(baseUrl + 'VersionTDI', true)
-			const pbf = new Pbf(buf)
-			const res = VersionTdiArray.read(pbf).versionTdiArray[0]
+			const res = VersionTdiArray.decode(buf)
+			const version = +res.versionTdiArray[0].baseVersion
 			// if the base_version attribute is non-existent or has the value
 			// 0, the LIO backend is probably just in the process of loading
 			// new data, try again later
-			return res.base_version === 0 ? null : res.base_version
+			return version === 0 ? null : version
 		},
 
 		stops: async (opt = {}) => {
