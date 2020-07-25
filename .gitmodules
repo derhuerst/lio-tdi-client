@@ -1,0 +1,3 @@
+[submodule "bernhackt2018-aldente-backend"]
+	path = bernhackt2018-aldente-backend
+	url = https://github.com/Andy-Bigler/bernhackt2018-aldente-backend.git
