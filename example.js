@@ -2,13 +2,17 @@
 
 const createClient = require('.')
 
+const {
+	StopTdiArray,
+} = require('./pbf').mhcc.app.dataprovider.model.tdiinterface.dstructs
+
 const client = createClient('https://tdi.swu.de/tdinterface/')
 
 ;(async () => {
 	console.log('version', await client.version())
 
-	const stops = await client.stops()
-	stops.pipe(process.stdout)
+	const stopsBuf = await client.stops({asBuffer: true})
+	console.log(StopTdiArray.decode(stopsBuf))
 })()
 .catch((err) => {
 	console.error(err)

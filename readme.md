@@ -20,7 +20,47 @@ npm install lio-tdi-client
 ## Usage
 
 ```js
-todo
+// create a client
+const createLioTdiClient = require('lio-tdi-client')
+const endpoint = 'https://tdi.swu.de/tdinterface/'
+const client = createLioTdiClient(endpoint)
+
+// fetch stops as Buffer
+const stopsBuf = await client.stops({asBuffer: true})
+
+// decode stops Buffer
+const {StopTdiArray} = require('lio-tdi-client/pbf').mhcc.app.dataprovider.model.tdiinterface.dstructs
+console.log(StopTdiArray.decode(pbf, stopsBuf))
+```
+
+```js
+{
+	stopTdiArray: [
+		{
+			duid: {low: 798, high: 14164742, unsigned: false},
+			lastModificationTimestamp: {low: 2034426655, high: 371, unsigned: false},
+			isDeleted: false,
+			number: {low: 2871, high: 0, unsigned: true},
+			shortName: 'GZAW',
+			longName: 'Günzburg Abz Wasserburg',
+			latitude: 174435185,
+			longitude: 36965635,
+			altitude: {low: 2147483646, high: 0, unsigned: true},
+		},
+		{
+			duid: {low: 799, high: 14164742, unsigned: false},
+			lastModificationTimestamp: {low: 2034426655, high: 371, unsigned: false},
+			isDeleted: false,
+			number: {low: 3466, high: 0, unsigned: true},
+			shortName: 'LEBS',
+			longName: 'Leipheim Bahnhofstraße',
+			latitude: 174416238,
+			longitude: 36784764,
+			altitude: {low: 2147483646, high: 0, unsigned: true},
+		},
+		// …
+	]
+}
 ```
 
 
