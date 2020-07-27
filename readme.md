@@ -64,6 +64,35 @@ console.log(StopTdiArray.decode(pbf, stopsBuf))
 ```
 
 
+### Observing data changes
+
+`lio-tdi-client` comes with a helper, which periodically polls `client.version()` to check if the endpoint's data version has changed. Use it to find out when to
+
+```js
+const observeDataVersion = require('lio-tdi-client/observe')
+
+observeDataVersion(client, (err, version) => {
+	if (err) {
+		console.error(err)
+		return;
+	}
+
+	console.log('new data version', version)
+	// refetch actual data here, e.g. client.stops()
+})
+```
+
+`observeDataVersion(client, opt = {}, cb)` takes an optional 2nd parameter `opt`, which overrides the following defaults:
+
+```js
+{
+	minInterval: 1_000, // start checking every 1s
+	factor: 2, // multiply interval whenever the version hasn't changed
+	maxInterval: 15_000, // always check at least every 15s
+}
+```
+
+
 ## Contributing
 
 If you have a question or need support using `lio-tdi-client`, please double-check your code and setup first. If you think you have found a bug or want to propose a feature, use [the issues page](https://github.com/derhuerst/lio-tdi-client/issues).
